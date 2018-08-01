@@ -1,5 +1,7 @@
 package agora_vaiSoccer;
 
+import java.awt.event.ItemListener;
+
 import javax.swing.*;
 
 @SuppressWarnings("serial")
@@ -18,6 +20,16 @@ public class Spinner extends Widget {
 	}
 	
 	public String toString() {
-		return cb.getSelectedItem().toString();
+		String item = (String) cb.getSelectedItem();
+		return item != null ? item : null;
+	}
+	
+	public void addItemListener(ItemListener listener) {
+		cb.addItemListener(listener);
+	}
+
+	@Override
+	public boolean validateInput() {
+		return true;
 	}
 }

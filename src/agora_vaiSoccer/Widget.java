@@ -4,7 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 
 @SuppressWarnings("serial")
-public class Widget extends JPanel {
+public abstract class Widget extends JPanel {
 	private JLabel label;
 	
 	public Widget(String l){
@@ -12,4 +12,6 @@ public class Widget extends JPanel {
 		label = new JLabel(l);
 		add(label);
 	}
+	
+	public abstract boolean validateInput();
 }

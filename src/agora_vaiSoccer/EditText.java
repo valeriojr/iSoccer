@@ -5,7 +5,7 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class EditText extends Widget {
 	private JTextField tf;
-	private String regex = ".";
+	private String regex = ".*";
 	
 	public EditText(String label) {
 		super(label);
@@ -25,7 +25,7 @@ public class EditText extends Widget {
 		this.regex = regex;
 	}
 	
-	public boolean validateText() {
+	public boolean validateInput() {
 		return tf.getText().matches(regex);
 	}
 }

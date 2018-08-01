@@ -4,7 +4,7 @@ public class Driver extends Employee {
 
 	private String cnh;
 	
-	public Driver(String name, String email, String cpf, String phone, float salary, String occupation, String cnh) {
+	public Driver(String name, String email, String cpf, String phone, String salary, String occupation, String cnh) {
 		super(name, email, cpf, phone, salary, occupation);
 		this.cnh = cnh;
 	}

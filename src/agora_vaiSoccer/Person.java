@@ -14,4 +14,20 @@ public class Person {
 	public String toString() {
 		return String.format("Nome: %s\nE-mail: %s\nCPF: %s\nTelefone: %s\n", name, email, cpf, phone);
 	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	
+	public String getCpf() {
+		return cpf;
+	}
+	
+	public String getPhone() {
+		return phone;
+	}
 }

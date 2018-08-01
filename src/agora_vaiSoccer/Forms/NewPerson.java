@@ -3,6 +3,7 @@ package agora_vaiSoccer.Forms;
 import java.awt.*;
 
 import agora_vaiSoccer.EditText;
+import agora_vaiSoccer.Widget;
 
 @SuppressWarnings("serial")
 public class NewPerson extends Form {
