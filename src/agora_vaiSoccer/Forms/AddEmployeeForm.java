@@ -7,6 +7,8 @@ import javax.swing.*;
 
 import agora_vaiSoccer.Driver;
 import agora_vaiSoccer.Employee;
+import agora_vaiSoccer.Player;
+import agora_vaiSoccer.iSoccer;
 
 @SuppressWarnings("serial")
 public class AddEmployeeForm extends JPanel implements AddForm{
@@ -27,12 +29,6 @@ public class AddEmployeeForm extends JPanel implements AddForm{
 	}
 	
 	public class AddButtonListener implements ActionListener{
-		private Employee employee;
-		
-		public AddButtonListener() {
-			employee = null;
-		}
-		
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String widgetNames[] = {"nameTf", "emailTf", "cpfTf", "phoneTf"};
@@ -51,11 +47,26 @@ public class AddEmployeeForm extends JPanel implements AddForm{
 				JOptionPane.showMessageDialog(null, "Entrada inválida!", "Erro", JOptionPane.ERROR_MESSAGE);
 				return;
 			}
+			
+			Employee employee = null;
 				
 			switch(occupation) {
 			case "Jogador":
+				String position = newEmployee.getInput("positionSp");
+				boolean able = newEmployee.getInput("ableCheckBox") != null;
+				if(position == null) {
+					JOptionPane.showMessageDialog(null, "Entrada inválida!", "Erro", JOptionPane.ERROR_MESSAGE);
+				}else {
+					employee = new Player(personInfo[0], personInfo[0], personInfo[0], personInfo[0], salary, occupation, position, able);
+				}
 				break;
 			case "Médico":
+				String crm = newEmployee.getInput("crmTf");
+				if(crm == null) {
+					JOptionPane.showMessageDialog(null, "Entrada inválida!", "Erro", JOptionPane.ERROR_MESSAGE);	
+				}else {
+					employee = new Driver(personInfo[0], personInfo[1], personInfo[2], personInfo[3], salary, occupation, crm);
+				}
 				break;
 			case "Motorista":
 				String cnh = newEmployee.getInput("cnhTf");
@@ -68,10 +79,8 @@ public class AddEmployeeForm extends JPanel implements AddForm{
 			default:
 				employee = new Employee(personInfo[0], personInfo[1], personInfo[2], personInfo[3], salary, occupation);
 			}
-		}
-		
-		public Employee getEmployee() {
-			return employee;
+			
+			iSoccer.getInstance().add(employee);
 		}
 	}
 }

@@ -31,6 +31,8 @@ public class Form extends JPanel {
 	public void removeComponent(String name) {
 		this.remove(components.get(name));
 		components.remove(name);
+		this.revalidate();
+		this.repaint();
 	}
 	
 	public String getInput(String widgetName) {

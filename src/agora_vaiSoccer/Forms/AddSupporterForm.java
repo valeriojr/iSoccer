@@ -7,15 +7,19 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 import agora_vaiSoccer.Supporter;
+import agora_vaiSoccer.iSoccer;
 import agora_vaiSoccer.Supporter.Type;
 
 @SuppressWarnings("serial")
 public class AddSupporterForm extends JPanel implements AddForm{
 	
 	Form forms[] = new Form[2];
+	ButtonListener listener;
 	
 	public AddSupporterForm() {
-		setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		//setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		listener = new ButtonListener();
+		
 		forms[0] = new NewPerson(this);
 		add(forms[0]);
 		forms[1] = new NewSupporter(this);
@@ -24,17 +28,10 @@ public class AddSupporterForm extends JPanel implements AddForm{
 
 	@Override
 	public ActionListener getListener() {
-		return new ButtonListener();
+		return listener;
 	}
 	
 	public class ButtonListener implements ActionListener{
-		
-		private Supporter supporter;
-		
-		public ButtonListener() {
-			supporter = null;
-		}
-		
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 
@@ -46,11 +43,7 @@ public class AddSupporterForm extends JPanel implements AddForm{
 			address = forms[1].getComponents()[0].toString();
 			type = forms[1].getComponents()[1].toString();
 			
-			supporter = new Supporter(name, email, cpf, phone, address, false, Supporter.Type.valueOf(type));
-		}
-		
-		public Supporter getSupporter() {
-			return supporter;
+			iSoccer.getInstance().add(new Supporter(name, email, cpf, phone, address, false, Supporter.Type.valueOf(type)));
 		}
 	}
 }

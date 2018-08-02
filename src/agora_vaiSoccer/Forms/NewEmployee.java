@@ -33,7 +33,6 @@ public class NewEmployee extends Form {
 			// TODO Auto-generated method stub
 			switch(e.getStateChange()) {
 			case ItemEvent.SELECTED:
-				System.out.println((String) e.getItem());
 				switch((String)e.getItem()) {
 				case "Jogador":
 					instance.addComponent("newPlayerF", new NewPlayer(parent));

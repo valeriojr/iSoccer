@@ -1,6 +1,8 @@
 package agora_vaiSoccer;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
@@ -10,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 
 import agora_vaiSoccer.Forms.AddEmployeeForm;
 import agora_vaiSoccer.Forms.AddForm;
+import agora_vaiSoccer.Forms.AddResourceForm;
 import agora_vaiSoccer.Forms.AddSupporterForm;
 import agora_vaiSoccer.Forms.Form;
 import agora_vaiSoccer.Forms.NewEmployee;
@@ -17,9 +20,10 @@ import agora_vaiSoccer.Forms.NewEmployee;
 @SuppressWarnings("serial")
 public class MainWindow extends JFrame {
 
-	private JPanel contentPane;
-	private Map<String, TreeMap<String, Employee>> employees;
-	private Map<String, Supporter> supporters;
+	private JPanel contentPane, panel;
+	private Component employeeForm, resourceForm, supporterForm;
+	private JMenu mnAdd, mnReport;
+	private JMenuItem mntmEmployee, mntmResource, mntmSupporter, mntmTeam;
 	/**
 	 * Launch the application.
 	 */
@@ -39,33 +43,65 @@ public class MainWindow extends JFrame {
 		contentPane.setLayout(new BorderLayout());
 		setContentPane(contentPane);
 		
-		employees = new TreeMap<String, TreeMap<String, Employee>>();
-		supporters = new TreeMap<String, Supporter>();
+		employeeForm = new AddEmployeeForm();
+		resourceForm = new AddResourceForm(panel);
+		supporterForm = new AddSupporterForm();
 		
-		Component form = new AddEmployeeForm();
-		contentPane.add(form, BorderLayout.NORTH);
+		panel = new JPanel();
+		contentPane.add(panel);
+		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+		
 		JButton addButton = new JButton("Adicionar");
-		addButton.addActionListener(((AddForm) form).getListener());
 		contentPane.add(addButton, BorderLayout.SOUTH);
-	}
-	
-	public void addEmployee(Employee e) {
-		if(employees.containsKey(e.getOccupation()) == false) {
-			employees.put(e.getOccupation(), new TreeMap<String, Employee>());
-		}
-		employees.get(e.getOccupation()).put(e.getCpf(), e);
-	}
-	
-	public void removeEmployee(String occupation, String cpf) {
-		employees.get(occupation).remove(cpf);
-	}
-	
-	public List getTeamInformation(){
-		ArrayList<Employee> team = new ArrayList<Employee>();
 		
-		Employee coach = (Employee) employees.get("Técnico").values().toArray()[0];
+		JMenuBar menuBar = new JMenuBar();
+		contentPane.add(menuBar, BorderLayout.NORTH);
 		
-		return null;
+		mnAdd = new JMenu("Adicionar");
+		menuBar.add(mnAdd);
+		
+		mntmEmployee = new JMenuItem("Funcionário");
+		mnAdd.add(mntmEmployee);
+		mntmEmployee.addActionListener(new MenuListener());
+		
+		mntmResource = new JMenuItem("Recurso");
+		mnAdd.add(mntmResource);
+		mntmResource.addActionListener(new MenuListener());
+		
+		mntmSupporter = new JMenuItem("Sócio torcedor");
+		mnAdd.add(mntmSupporter);
+		mntmSupporter.addActionListener(new MenuListener());
+		
+		mnReport = new JMenu("Relatório");
+		menuBar.add(mnReport);
+		
+		mntmTeam = new JMenuItem("Time");
+		mnReport.add(mntmTeam);
+		mntmTeam.addActionListener(new MenuListener());
 	}
+	
+	public class MenuListener implements ActionListener{
 
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JMenuItem item = (JMenuItem) e.getSource();
+			
+			if(item == mntmEmployee) {
+				panel.removeAll();
+				panel.add(employeeForm, BorderLayout.NORTH);
+			}
+			if(item == mntmResource) {
+				panel.removeAll();
+				panel.add(resourceForm, BorderLayout.NORTH);
+			}
+			if(item == mntmSupporter) {
+				panel.removeAll();
+				panel.add(supporterForm, BorderLayout.NORTH);
+			}
+			
+			panel.revalidate();
+			panel.repaint();
+		}
+		
+	}
 }
