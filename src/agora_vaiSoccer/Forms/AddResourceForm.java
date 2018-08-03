@@ -69,10 +69,14 @@ public class AddResourceForm extends Form implements AddForm{
 				iSoccer.getInstance().setBus(new Bus());
 				break;
 			case "Estádio":
-				iSoccer.getInstance().setStadium(new Stadium(0, 0, 0));
+				int spectators = Integer.valueOf(instance.getInput("spectatorsTf"));
+				int bathrooms = Integer.valueOf(instance.getInput("bathroomTf"));
+				int snackBars = Integer.valueOf(instance.getInput("snackBarsTf"));
+				iSoccer.getInstance().setStadium(new Stadium(spectators, bathrooms, snackBars));
 				break;
 			case "Centro de treinamento":
-				iSoccer.getInstance().setTrainingCenter(new TrainingCenter(0));
+				int dorms = Integer.valueOf(instance.getInput("dormsTf"));
+				iSoccer.getInstance().setTrainingCenter(new TrainingCenter(dorms));
 				break;
 			}
 		}

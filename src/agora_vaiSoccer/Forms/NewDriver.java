@@ -9,7 +9,7 @@ public class NewDriver extends Form {
 
 	public NewDriver(Component parent) {
 		super(parent);
-		addComponent("cnhTf", new EditText("CNH"));
+		
 	}
 
 }

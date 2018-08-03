@@ -6,8 +6,10 @@ import java.awt.event.ItemListener;
 
 import javax.swing.*;
 
+import agora_vaiSoccer.CheckBox;
 import agora_vaiSoccer.EditText;
 import agora_vaiSoccer.Employee;
+import agora_vaiSoccer.Player;
 import agora_vaiSoccer.Spinner;
 
 @SuppressWarnings("serial")
@@ -35,26 +37,28 @@ public class NewEmployee extends Form {
 			case ItemEvent.SELECTED:
 				switch((String)e.getItem()) {
 				case "Jogador":
-					instance.addComponent("newPlayerF", new NewPlayer(parent));
+					instance.addComponent("positionSp", new Spinner("Posição", Player.positions));
+					instance.addComponent("ableCb", new CheckBox("Apto para jogar?"));
 					break;
 				case "Médico":
-					instance.addComponent("newDoctorF", new NewDoctor(parent));
+					instance.addComponent("crmTf", new EditText("CRM"));
 					break;
 				case "Motorista":
-					instance.addComponent("newDriverF", new NewDriver(parent));
+					instance.addComponent("cnhTf", new EditText("CNH"));
 					break;
 				}
 				break;
 			case ItemEvent.DESELECTED:
 				switch((String)e.getItem()) {
 				case "Jogador":
-					instance.removeComponent("newPlayerF");
+					instance.removeComponent("positionSp");
+					instance.removeComponent("ableCb");
 					break;
 				case "Médico":
-					instance.removeComponent("newDoctorF");
+					instance.removeComponent("crmTf");
 					break;
 				case "Motorista":
-					instance.removeComponent("newDriverF");
+					instance.removeComponent("cnhTf");
 					break;
 				}
 				break;

@@ -6,4 +6,8 @@ public class TrainingCenter extends Resource {
 	public TrainingCenter(int dorms) {
 		this.dorms = dorms;
 	}
+	
+	public String toString() {
+		return String.format("Dormitórios: %d\n", dorms);
+	}
 }

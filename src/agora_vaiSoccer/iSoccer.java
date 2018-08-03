@@ -33,6 +33,7 @@ public class iSoccer {
 			setCoach(e);
 		}
 		employees.put(e.getCpf(), e);
+		System.out.println(employees.size());
 	}
 
 	public void add(Supporter s) {

@@ -8,7 +8,6 @@ public class NewDoctor extends Form{
 
 	public NewDoctor(Component parent) {
 		super(parent);
-		addComponent("crmTf", new EditText("CRM"));
 	}
 
 }

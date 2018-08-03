@@ -37,7 +37,7 @@ public class AddEmployeeForm extends JPanel implements AddForm{
 			for(int i = 0;i < widgetNames.length;i++) {
 				personInfo[i] = newPerson.getInput(widgetNames[i]);
 				if(personInfo[i] == null) {
-					JOptionPane.showMessageDialog(null, "PEntrada inválida!", "Erro", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Entrada inválida!", "Erro", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 			
@@ -53,7 +53,7 @@ public class AddEmployeeForm extends JPanel implements AddForm{
 			switch(occupation) {
 			case "Jogador":
 				String position = newEmployee.getInput("positionSp");
-				boolean able = newEmployee.getInput("ableCheckBox") != null;
+				boolean able = newEmployee.getInput("ableCb") != null;
 				if(position == null) {
 					JOptionPane.showMessageDialog(null, "Entrada inválida!", "Erro", JOptionPane.ERROR_MESSAGE);
 				}else {

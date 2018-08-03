@@ -33,5 +33,8 @@ public class Stadium extends Resource {
 		this.snackBars = snackBars;
 	}
 	
+	public String toString() {
+		return String.format("Espectadores: %d\nBanheiros: %d\nLanchonetes: %d\n", spectators, bathrooms, snackBars);
+	}
 	
 }

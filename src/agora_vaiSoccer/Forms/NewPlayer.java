@@ -11,8 +11,6 @@ public class NewPlayer extends Form {
 
 	public NewPlayer(Component parent) {
 		super(parent);
-		addComponent("positionSp", new Spinner("Posição", Player.positions));
-		addComponent("ableCb", new CheckBox("Apto para jogar?"));
 	}
 
 }
